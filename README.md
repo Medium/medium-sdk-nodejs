@@ -48,6 +48,8 @@ Contributors
 
 Questions, comments, bug reports and pull requests are all welcomed, especially those that make the code more idiomatic.
 
+If you haven't contributed to a Medium project before please head over to the [Open Source Project](https://github.com/Medium/opensource#note-to-external-contributors) and fill out an OCLA (it should be pretty painless).
+
 License
 -------
 
