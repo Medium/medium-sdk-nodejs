@@ -46,6 +46,8 @@ Contributors
 
 [Jamie Talbot](https://github.com/majelbstoat)
 
+Questions, comments, bug reports and pull requests are all welcomed, especially those that make the code more idiomatic.
+
 License
 -------
 
