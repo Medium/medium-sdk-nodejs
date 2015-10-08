@@ -1,7 +1,7 @@
 {
     "name": "medium-sdk"
   , "description": "NodeJS client for the Medium app"
-  , "version": "0.1"
+  , "version": "0.0.1"
   , "homepage": "https://github.com/medium/medium-sdk-nodejs"
   , "authors": [
     "Jamie Talbot <jamie@jamietalbot.com> (https://github.com/majelbstoat)"
