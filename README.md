@@ -1,6 +1,6 @@
-# Medium SDK for Go
+# Medium SDK for NodeJS
 
-This repository contains the open source SDK for integrating [Medium](https://medium.com)'s OAuth2 API into your Go app.
+This repository contains the open source SDK for integrating [Medium](https://medium.com)'s OAuth2 API into your NodeJs app.
 
 Install
 -------
