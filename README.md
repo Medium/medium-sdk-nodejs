@@ -5,7 +5,7 @@ This repository contains the open source SDK for integrating [Medium](https://me
 Install
 -------
 
-    npm install medium-sdk-nodejs
+    npm install medium-sdk
 
 Usage
 -----
@@ -13,7 +13,7 @@ Usage
 Create a client, then call commands on it.
 
 ```javascript
-var medium = require('medium-sdk-nodejs')
+var medium = require('medium-sdk')
 
 var client = new medium.MediumClient({
   clientId: 'YOUR_CLIENT_ID',
