@@ -228,7 +228,7 @@ MediumClient.prototype._acquireAccessToken = function (params, callback) {
     data: qs.stringify(params)
   }, function (err, data) {
     if (!err) {
-      this._accessToken = data.accessToken
+      this._accessToken = data.access_token
     }
     callback(err, data)
   }.bind(this))
@@ -272,7 +272,7 @@ MediumClient.prototype._makeRequest = function (options, callback) {
         var err = payload.errors[0]
         callback(new MediumError(err.message, err.code), null)
       } else if (statusType == 2) {
-        callback(null, payload.data)
+        callback(null, payload)
       } else {
         callback(new MediumError('Unexpected response', DEFAULT_ERROR_CODE), null)
       }
