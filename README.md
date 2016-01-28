@@ -20,13 +20,15 @@ var client = new medium.MediumClient({
   clientSecret: 'YOUR_CLIENT_SECRET'
 })
 
-var url = client.getAuthorizationUrl('secretState', 'https://yoursite.com/callback/medium', [
+var redirectURL = 'https://yoursite.com/callback/medium'; 
+
+var url = client.getAuthorizationUrl('secretState', redirectURL, [
   medium.Scope.BASIC_PROFILE, medium.Scope.PUBLISH_POST
 ])
 
 // (Send the user to the authorization URL to obtain an authorization code.)
 
-client.ExchangeAuthorizationCode('YOUR_AUTHORIZATION_CODE', function (err, token) {
+client.exchangeAuthorizationCode('YOUR_AUTHORIZATION_CODE', redirectURL, function (err, token) {
   client.getUser(function (err, user) {
     client.createPost({
       userId: user.id,
