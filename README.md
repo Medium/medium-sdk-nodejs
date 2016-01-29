@@ -26,14 +26,14 @@ var url = client.getAuthorizationUrl('secretState', 'https://yoursite.com/callba
 
 // (Send the user to the authorization URL to obtain an authorization code.)
 
-client.ExchangeAuthorizationCode('YOUR_AUTHORIZATION_CODE', function (err, token) {
+client.exchangeAuthorizationCode('YOUR_AUTHORIZATION_CODE', function (err, token) {
   client.getUser(function (err, user) {
     client.createPost({
       userId: user.id,
       title: 'A new post',
       contentFormat: medium.PostContentFormat.HTML,
       content: '<h1>A New Post</h1><p>This is my new post.</p>',
-      publishStatus: medium.PostPublishStatus.DRAFT 
+      publishStatus: medium.PostPublishStatus.DRAFT
     }, function (err, post) {
       console.log(token, user, post)
     })
