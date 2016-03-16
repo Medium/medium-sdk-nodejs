@@ -1,6 +1,7 @@
 # Medium SDK for NodeJS
 
 This repository contains the open source SDK for integrating [Medium](https://medium.com)'s OAuth2 API into your NodeJs app.
+
 View the full [documentation here](https://github.com/Medium/medium-api-docs)
 
 Install
