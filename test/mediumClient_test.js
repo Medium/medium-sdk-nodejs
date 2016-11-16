@@ -228,6 +228,7 @@ describe('MediumClient - methods', function () {
         contentFormat: 'html',
         tags: ['js', 'unit tests'],
         canonicalUrl: 'http://example.com/new-post',
+        publishedAt: '2004-02-12T15:19:21+00:00',
         publishStatus: 'draft',
         license: 'all-rights-reserved'
       }
@@ -239,6 +240,7 @@ describe('MediumClient - methods', function () {
             contentFormat: options.contentFormat,
             tags: options.tags,
             canonicalUrl: options.canonicalUrl,
+            publishedAt: options.publishedAt,
             publishStatus: options.publishStatus,
             license: options.license
         })
@@ -268,6 +270,7 @@ describe('MediumClient - methods', function () {
         contentFormat: 'html',
         tags: ['js', 'unit tests'],
         canonicalUrl: 'http://example.com/new-post',
+        publishedAt: '2004-02-12T15:19:21+00:00',
         publishStatus: 'draft',
         license: 'all-rights-reserved'
       }
@@ -279,6 +282,7 @@ describe('MediumClient - methods', function () {
             contentFormat: options.contentFormat,
             tags: options.tags,
             canonicalUrl: options.canonicalUrl,
+            publishedAt: options.publishedAt,
             publishStatus: options.publishStatus,
             license: options.license
         })
