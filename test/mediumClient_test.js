@@ -18,17 +18,17 @@ describe('MediumClient - constructor', function () {
   })
 
   it('should throw a MediumError when only clientId is provided', function (done) {
-    (function () { new medium.MediumClient({clientId: 'xxx'}) }).should.throw(medium.MediumError)
+    (function () { new medium.MediumClient({ clientId: 'xxx' }) }).should.throw(medium.MediumError)
     done()
   })
 
   it('should throw a MediumError when only clientSecret is provided', function (done) {
-    (function () { new medium.MediumClient({clientSecret: 'yyy'}) }).should.throw(medium.MediumError)
+    (function () { new medium.MediumClient({ clientSecret: 'yyy' }) }).should.throw(medium.MediumError)
     done()
   })
 
   it('should succeed when both clientId and clientSecret are provided', function (done) {
-    var client = new medium.MediumClient({clientId: 'xxx', clientSecret: 'yyy'})
+    var client = new medium.MediumClient({ clientId: 'xxx', clientSecret: 'yyy' })
     done()
   })
 })
@@ -41,7 +41,7 @@ describe('MediumClient - methods', function () {
   var client
 
   beforeEach(function () {
-    client = new medium.MediumClient({clientId: clientId, clientSecret: clientSecret})
+    client = new medium.MediumClient({ clientId: clientId, clientSecret: clientSecret })
     nock.disableNetConnect()
   })
 
@@ -52,7 +52,7 @@ describe('MediumClient - methods', function () {
 
   describe('#setAccessToken', function () {
 
-    it ('sets the access token', function (done) {
+    it('sets the access token', function (done) {
       var token = "new token"
       client.setAccessToken(token)
       client._accessToken.should.be.String().and.equal(token)
@@ -62,7 +62,7 @@ describe('MediumClient - methods', function () {
 
   describe('#getAuthorizationUrl', function () {
 
-    it ('returns a valid URL for fetching', function (done) {
+    it('returns a valid URL for fetching', function (done) {
       var state = "state"
       var redirectUrl = "https://example.com/callback"
       var scope = [medium.Scope.BASIC_PROFILE, medium.Scope.LIST_PUBLICATIONS, medium.Scope.PUBLISH_POST]
@@ -71,20 +71,20 @@ describe('MediumClient - methods', function () {
       authUrl.protocol.should.equal('https:')
       authUrl.hostname.should.equal('medium.com')
       authUrl.pathname.should.equal('/m/oauth/authorize')
-      authUrl.query.should.deepEqual({
+      should.equal(JSON.stringify(authUrl.query), JSON.stringify({
         client_id: clientId,
         scope: scope.join(','),
         response_type: 'code',
         state: state,
         redirect_uri: redirectUrl
-      })
+      }));
       done()
     })
   })
 
   describe('#exchangeAuthorizationCode', function () {
 
-    it ('makes a request for authorization_code and sets the access token from response', function (done) {
+    it('makes a request for authorization_code and sets the access token from response', function (done) {
       var code = '12345'
       var grantType = 'authorization_code'
       var redirectUrl = 'https://example.com/callback'
@@ -105,8 +105,8 @@ describe('MediumClient - methods', function () {
         refresh_token: refreshToken
       }
       var request = nock('https://api.medium.com/', {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
         .post('/v1/tokens', requestBody)
         .reply(201, responseBody)
 
@@ -122,7 +122,7 @@ describe('MediumClient - methods', function () {
 
   describe('#exchangeRefreshToken', function () {
 
-    it ('makes a request for authorization_code and sets the access token from response', function (done) {
+    it('makes a request for authorization_code and sets the access token from response', function (done) {
       var refreshToken = 'fedcba'
       var accessToken = 'lkjihg'
 
@@ -139,8 +139,8 @@ describe('MediumClient - methods', function () {
         refresh_token: refreshToken
       }
       var request = nock('https://api.medium.com/', {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
         .post('/v1/tokens', requestBody)
         .reply(201, responseBody)
 
@@ -155,7 +155,7 @@ describe('MediumClient - methods', function () {
   })
 
   describe('#getUser', function () {
-    it ('gets the information from expected URL and returns contents of data envelope', function (done) {
+    it('gets the information from expected URL and returns contents of data envelope', function (done) {
       var response = { data: 'response data' }
 
       var request = nock('https://api.medium.com')
@@ -173,12 +173,12 @@ describe('MediumClient - methods', function () {
 
   describe('#getPublicationsForUser', function () {
 
-    it ('throws a MediumError when no user ID is provided', function (done) {
+    it('throws a MediumError when no user ID is provided', function (done) {
       (function () { client.getPublicationsForUser({}) }).should.throw(medium.MediumError)
       done()
     })
 
-    it ('makes a proper GET request to the Medium API and returns contents of data envelope when valid options are provided', function (done) {
+    it('makes a proper GET request to the Medium API and returns contents of data envelope when valid options are provided', function (done) {
       var userId = '123456'
       var response = { data: 'response data' }
 
@@ -186,7 +186,7 @@ describe('MediumClient - methods', function () {
         .get('/v1/users/' + userId + '/publications')
         .reply(200, response)
 
-      client.getPublicationsForUser({userId: userId}, function (err, data) {
+      client.getPublicationsForUser({ userId: userId }, function (err, data) {
         if (err) throw err
         data.should.deepEqual(response['data'])
         done()
@@ -197,12 +197,12 @@ describe('MediumClient - methods', function () {
 
   describe('#getContributorsForPublication', function () {
 
-    it ('throws a MediumError when no publication ID is provided', function (done) {
+    it('throws a MediumError when no publication ID is provided', function (done) {
       (function () { client.getContributorsForPublication({}) }).should.throw(medium.MediumError)
       done()
     })
 
-    it ('makes a proper GET request to the Medium API and returns contents of data envelope', function (done) {
+    it('makes a proper GET request to the Medium API and returns contents of data envelope', function (done) {
       var options = { publicationId: 'abcdef' }
       var response = { data: 'response data' }
       var request = nock('https://api.medium.com/')
@@ -220,7 +220,7 @@ describe('MediumClient - methods', function () {
 
   describe('#createPost', function () {
 
-    it ('makes a proper POST request to the Medium API and returns contents of data envelope', function (done) {
+    it('makes a proper POST request to the Medium API and returns contents of data envelope', function (done) {
       var options = {
         userId: '123456',
         title: 'new post title',
@@ -235,14 +235,14 @@ describe('MediumClient - methods', function () {
       var response = { data: 'response data' }
       var request = nock('https://api.medium.com/')
         .post('/v1/users/' + options.userId + '/posts', {
-            title: options.title,
-            content: options.content,
-            contentFormat: options.contentFormat,
-            tags: options.tags,
-            canonicalUrl: options.canonicalUrl,
-            publishedAt: options.publishedAt,
-            publishStatus: options.publishStatus,
-            license: options.license
+          title: options.title,
+          content: options.content,
+          contentFormat: options.contentFormat,
+          tags: options.tags,
+          canonicalUrl: options.canonicalUrl,
+          publishedAt: options.publishedAt,
+          publishStatus: options.publishStatus,
+          license: options.license
         })
         .reply(200, response)
 
@@ -257,12 +257,12 @@ describe('MediumClient - methods', function () {
 
   describe('#createPostInPublication', function () {
 
-    it ('should throw an error when no publication ID is provided', function (done) {
+    it('should throw an error when no publication ID is provided', function (done) {
       (function () { client.createPostInPublication({}) }).should.throw(medium.MediumError)
       done()
     })
 
-    it ('makes a proper POST request to the Medium API and returns contents of data envelope', function (done) {
+    it('makes a proper POST request to the Medium API and returns contents of data envelope', function (done) {
       var options = {
         publicationId: 'abcdef',
         title: 'new post title',
@@ -277,14 +277,14 @@ describe('MediumClient - methods', function () {
       var response = { data: 'response data' }
       var request = nock('https://api.medium.com/')
         .post('/v1/publications/' + options.publicationId + '/posts', {
-            title: options.title,
-            content: options.content,
-            contentFormat: options.contentFormat,
-            tags: options.tags,
-            canonicalUrl: options.canonicalUrl,
-            publishedAt: options.publishedAt,
-            publishStatus: options.publishStatus,
-            license: options.license
+          title: options.title,
+          content: options.content,
+          contentFormat: options.contentFormat,
+          tags: options.tags,
+          canonicalUrl: options.canonicalUrl,
+          publishedAt: options.publishedAt,
+          publishStatus: options.publishStatus,
+          license: options.license
         })
         .reply(200, response)
 
